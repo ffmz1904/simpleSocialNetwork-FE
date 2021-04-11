@@ -17,7 +17,7 @@ export const publicRoutes = [
         Component: Home
     },
     {
-        path: ROUTE.USER_ROUTE,
+        path: ROUTE.USER_ROUTE + '/:id',
         Component: User
     }
 ];

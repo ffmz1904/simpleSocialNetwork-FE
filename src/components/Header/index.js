@@ -9,8 +9,7 @@ import { logout } from "../../actions/user";
 import defaultImage from '../../assets/defaultUserImg.png';
 import './styles.scss';
 
-
-const Header = ({ isAuth, logout }) => {
+const Header = ({ isAuth, userId, logout }) => {
     const history = useHistory();
     const logoutUser = () => {
         logout()
@@ -25,7 +24,7 @@ const Header = ({ isAuth, logout }) => {
             <div className="right_block">
                 { isAuth
                     ? <div className="auth_user">
-                        <Link className="profile" to={USER_ROUTE}>
+                        <Link className="profile" to={USER_ROUTE + `/${userId}`}>
                             <Image src={defaultImage} size="small" />
                         </Link>
                         <Link className="logout" onClick={logoutUser} >Log out</Link>
@@ -39,6 +38,7 @@ const Header = ({ isAuth, logout }) => {
 
 Header.propTypes = {
     isAuth: PropTypes.bool.isRequired,
+    userId: PropTypes.string.isRequired,
     logout: PropTypes.func.isRequired
 };
 
@@ -49,7 +49,8 @@ const actions = {
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const mapStateToProps = ({ user }) => ({
-    isAuth: user.isAuth
+    isAuth: user.isAuth,
+    userId: user.data._id
 });
 
 export default connect(

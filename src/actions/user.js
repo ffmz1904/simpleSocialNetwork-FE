@@ -36,3 +36,8 @@ export const checkAuth = () => async dispatch => {
     localStorage.setItem('token', response.token);
     dispatch(checkUser(response.user));
 };
+
+export const getUserDataById = id => async dispatch => {
+    const response = await userApi.getUserById(id);
+    return response.user;
+};
