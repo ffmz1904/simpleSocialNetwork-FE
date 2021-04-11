@@ -18,7 +18,6 @@ const User = () => {
                     </div>
                 </div>
                 <PostsList />
-                <PostsList />
             </Container>
         </div>
     );

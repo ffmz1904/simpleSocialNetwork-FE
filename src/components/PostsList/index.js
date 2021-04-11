@@ -8,6 +8,9 @@ const PostsList = () => {
             <PostsListItem />
             <PostsListItem />
             <PostsListItem />
+            <PostsListItem />
+            <PostsListItem />
+            <PostsListItem />
         </div>
     );
 };

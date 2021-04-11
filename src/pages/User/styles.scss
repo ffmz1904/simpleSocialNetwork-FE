@@ -1,0 +1,27 @@
+@import "src/colors";
+
+.ui.container.UserPage {
+  display: flex;
+  flex-direction: column;
+
+  .information {
+    display: flex;
+    margin-bottom: 20px;
+
+    img {
+      border: 2px solid $color_black;
+      border-radius: 100%;
+    }
+
+    .user_information {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 25px 50px;
+    }
+  }
+
+  .PostsList {
+    padding-bottom: 30px;
+  }
+}
