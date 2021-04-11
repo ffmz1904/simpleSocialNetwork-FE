@@ -26,7 +26,12 @@ const Auth = ({
             login({ email, password })
                 .then(res => history.push(HOME_ROUTE));
         } else {
-            //registration
+            if (password === confirmPassword) {
+                registration({ email, password, name })
+                    .then(res => history.push(LOGIN_ROUTE));
+            } else {
+                // todo handle error
+            }
         }
     }
 
