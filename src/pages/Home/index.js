@@ -5,11 +5,9 @@ import './styles.scss';
 
 const Home = () => {
     return (
-        <div className="page HomePage">
-            <Container>
-                Home page
-                <PostsList />
-                <PostsList />
+        <div className="page">
+            <Container className="HomePage">
+                <h2>Posts</h2>
                 <PostsList />
             </Container>
         </div>
