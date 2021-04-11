@@ -1,0 +1,35 @@
+@import "src/colors";
+
+.ui.container.AuthPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+
+    h2 {
+      text-align: center;
+    }
+
+    .ui.input {
+      margin: 10px 0;
+
+      input {
+        text-align: center;
+      }
+    }
+
+    .ui.button {
+      color: #fff;
+      background: $color_black;
+    }
+  }
+
+  .redirect {
+    padding: 15px 0;
+  }
+}

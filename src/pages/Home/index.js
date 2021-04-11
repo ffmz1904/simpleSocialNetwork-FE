@@ -1,6 +1,7 @@
 import React from 'react';
 import {Container} from "semantic-ui-react";
-import PostsList from "../components/PostsList";
+import PostsList from "../../components/PostsList";
+import './styles.scss';
 
 const Home = () => {
     return (

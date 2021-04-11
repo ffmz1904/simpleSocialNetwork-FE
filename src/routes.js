@@ -1,5 +1,5 @@
 import * as ROUTE from './utils/routesConstants';
-import Auth from './pages/Auth';
+import Auth from "./pages/Auth";
 import Home from './pages/Home';
 import User from './pages/User';
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import {BrowserRouter} from "react-router-dom";
-import AppHeader from "./components/AppHeader";
+import Header from "./components/Header";
 import AppRouter from "./components/AppRouter";
 
 function App() {
   return (
     <BrowserRouter>
-      <AppHeader />
+      <Header />
       <AppRouter />
     </BrowserRouter>
   );

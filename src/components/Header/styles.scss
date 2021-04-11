@@ -1,0 +1,30 @@
+@import "src/colors";
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  height: 60px;
+  padding: 0 50px;
+  background: $color_black;
+  color: #fff;
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: $color_blue;
+    }
+  }
+
+  .right_block {
+    a {
+      border-bottom: 1px solid #fff;
+      font-size: 16px;
+      &:hover {
+        border-bottom: 1px solid $color_blue;
+      }
+    }
+  }
+}

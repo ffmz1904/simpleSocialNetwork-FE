@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Button, Container, Input} from "semantic-ui-react";
 import {NavLink, useLocation} from "react-router-dom";
-import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/routesConstants";
+import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../utils/routesConstants";
+import './styles.scss';
 
 const Auth = () => {
     const location = useLocation();
