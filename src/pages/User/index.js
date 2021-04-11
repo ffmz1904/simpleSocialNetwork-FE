@@ -13,23 +13,22 @@ import './styles.scss';
 
 const User = ({
     getUserDataById,
-    getAllPost
+    getAllPost,
+    posts
 }) => {
-    const [loading, setLoading] = useState(true)
     const [userData, setUserData] = useState(null);
-    const [posts, setPosts] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
-        Promise.all([getUserDataById(id),getAllPost(id)])
-            .then(values => {
-                setUserData(values[0]);
-                setPosts(values[1]);
-            })
-            .finally(() => setLoading(false));
+        getUserDataById(id)
+            .then(user => {
+                setUserData(user);
+            });
+
+        getAllPost(id)
     }, []);
 
-    if (loading) {
+    if (!userData) {
         return <Preloader />
     }
 
@@ -53,7 +52,8 @@ const User = ({
 
 User.propTypes = {
     getUserDataById: PropTypes.func.isRequired,
-    getAllPost: PropTypes.func.isRequired
+    getAllPost: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired
 };
 
 const actions = {
@@ -63,8 +63,8 @@ const actions = {
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-// const mapStateToProps = ({ user }) => ({
-//     userData: user.data
-// });
+const mapStateToProps = ({ post }) => ({
+    posts: post
+});
 
-export default connect(null, mapDispatchToProps)(User);
+export default connect(mapStateToProps, mapDispatchToProps)(User);
