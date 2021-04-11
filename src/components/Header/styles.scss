@@ -26,5 +26,28 @@
         border-bottom: 1px solid $color_blue;
       }
     }
+
+    .auth_user {
+      display: flex;
+      align-items: center;
+
+      .profile {
+        border-bottom: none;
+        img {
+          background: #fff;
+          width: 40px;
+          height: 40px;
+          border-radius: 100%;
+
+          &:hover {
+            border: 1px solid $color_blue;
+          }
+        }
+      }
+
+      .logout {
+        margin-left: 15px;
+      }
+    }
   }
 }

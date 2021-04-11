@@ -1,10 +1,18 @@
 import React, {useState} from 'react';
 import {Button, Container, Input} from "semantic-ui-react";
-import {NavLink, useLocation} from "react-router-dom";
-import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../utils/routesConstants";
+import {NavLink, useHistory, useLocation} from "react-router-dom";
+import {HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../utils/routesConstants";
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {registration, login} from "../../actions/user";
 import './styles.scss';
 
-const Auth = () => {
+const Auth = ({
+    registration,
+    login
+}) => {
+    const history = useHistory();
     const location = useLocation();
     const isLogin = location.pathname === LOGIN_ROUTE;
 
@@ -12,6 +20,15 @@ const Auth = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    const handleClick = () => {
+        if (isLogin) {
+            login({ email, password })
+                .then(res => history.push(HOME_ROUTE));
+        } else {
+            //registration
+        }
+    }
 
     return (
         <div className="page">
@@ -44,7 +61,7 @@ const Auth = () => {
                         onChange={e => setConfirmPassword(e.target.value)}
                     />
                     }
-                    <Button>{isLogin ? 'Sign in' : 'Registration'}</Button>
+                    <Button type="button" onClick={handleClick} >{isLogin ? 'Sign in' : 'Registration'}</Button>
                 </form>
                 <div className="redirect">
                     {isLogin ?
@@ -62,4 +79,19 @@ const Auth = () => {
     );
 };
 
-export default Auth;
+Auth.propTypes = {
+    registration: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired
+};
+
+const actions = {
+    registration,
+    login
+};
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+export default connect(
+    null,
+    mapDispatchToProps
+    )(Auth);
