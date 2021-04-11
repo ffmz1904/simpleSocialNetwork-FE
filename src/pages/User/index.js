@@ -7,18 +7,31 @@ import {bindActionCreators} from "redux";
 import PropTypes from "prop-types";
 import {useParams} from "react-router-dom";
 import {getUserDataById} from "../../actions/user";
+import {getAllPost} from "../../actions/post";
+import Preloader from "../../components/Preloader";
 import './styles.scss';
 
 const User = ({
-  getUserDataById
+    getUserDataById,
+    getAllPost
 }) => {
-    const [userData, setUserData] = useState();
+    const [loading, setLoading] = useState(true)
+    const [userData, setUserData] = useState(null);
+    const [posts, setPosts] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
-        getUserDataById(id)
-            .then(user => setUserData(user))
+        Promise.all([getUserDataById(id),getAllPost(id)])
+            .then(values => {
+                setUserData(values[0]);
+                setPosts(values[1]);
+            })
+            .finally(() => setLoading(false));
     }, []);
+
+    if (loading) {
+        return <Preloader />
+    }
 
     return (
         <div className="page">
@@ -32,18 +45,20 @@ const User = ({
                         </div>
                     </div>
                 </div>
-                <PostsList />
+                <PostsList posts={posts} />
             </Container>
         </div>
     );
 };
 
 User.propTypes = {
-    getUserDataById: PropTypes.func.isRequired
+    getUserDataById: PropTypes.func.isRequired,
+    getAllPost: PropTypes.func.isRequired
 };
 
 const actions = {
-    getUserDataById
+    getUserDataById,
+    getAllPost
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

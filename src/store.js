@@ -7,6 +7,7 @@ import {
 import thunk from 'redux-thunk';
 
 import user from './reducers/user';
+import post from './reducers/post';
 
 const initialState = {};
 
@@ -19,7 +20,8 @@ const composedEnhancers = compose(
 );
 
 const reducers = {
-    user
+    user,
+    post
 };
 
 const rootReducer = combineReducers({ ...reducers });
