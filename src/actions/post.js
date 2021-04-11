@@ -8,5 +8,6 @@ const setPosts = data => ({
 
 export const getAllPost = (id = null) => async dispatch => {
     const response = await postApi.getAllPosts(id);
+    dispatch(setPosts(response.post));
     return response.post;
 }
