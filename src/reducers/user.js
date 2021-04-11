@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, REGISTRATION} from '../utils/actionsConstants';
+import {LOGIN, LOGOUT, CHECK_AUTH} from '../utils/actionsConstants';
 
 const defaultState = {
     isAuth: false,
@@ -8,6 +8,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
     switch (action.type) {
         case LOGIN:
+        case CHECK_AUTH:
             return { ...state, isAuth: true, data: action.data }
         case LOGOUT:
             return { ...defaultState };

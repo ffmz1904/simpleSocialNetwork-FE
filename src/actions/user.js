@@ -1,13 +1,18 @@
 import * as userApi from '../http/userAPI';
-import { REGISTRATION, LOGIN, LOGOUT } from '../utils/actionsConstants';
+import { REGISTRATION, LOGIN, LOGOUT, CHECK_AUTH } from '../utils/actionsConstants';
 
-const setUserData = (data) => ({
+const setUserData = data => ({
     type: LOGIN,
     data
 });
 
 const removeUserData = () => ({
    type: LOGOUT
+});
+
+const checkUser = data => ({
+    type: CHECK_AUTH,
+    data
 });
 
 export const registration = userData => async dispatch => {
@@ -24,4 +29,10 @@ export const login = userData => async dispatch => {
 export const logout = () => async dispatch => {
     localStorage.removeItem('token');
     dispatch(removeUserData());
+};
+
+export const checkAuth = () => async dispatch => {
+    const response = await userApi.check();
+    localStorage.setItem('token', response.token);
+    dispatch(checkUser(response.user));
 };
