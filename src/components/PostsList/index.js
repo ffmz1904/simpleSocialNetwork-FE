@@ -4,11 +4,10 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const PostsList = ({ posts }) => {
-    console.log(posts)
     return (
         <div className="PostsList">
             { posts.length
-                ? posts.map(post => <PostsListItem key={post._id} />)
+                ? posts.map(post => <PostsListItem key={post._id} post={post} />)
                 : <div className="empty">No posts yet!</div>
             }
         </div>
