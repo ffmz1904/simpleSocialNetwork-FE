@@ -3,10 +3,10 @@ import {Card, Icon, Image} from "semantic-ui-react";
 import PropTypes from 'prop-types';
 import defaultImage from '../../assets/defaultUserImg.png';
 
-const PostsListItem = ({ post }) => {
+const PostsListItem = ({ post, openPost }) => {
     return (
         <Card className="PostsListItem">
-            <Card.Content>
+            <Card.Content onClick={() => openPost(post)}>
                 <Card.Header>{ post.title }</Card.Header>
                 <Card.Description>
                     { post.body }
