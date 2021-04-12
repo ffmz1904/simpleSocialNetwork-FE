@@ -9,3 +9,4 @@ export const SET_POSTS = 'POST:SET_POSTS';
 
 //  Comment
 export const SET_COMMENTS = 'COMMENT:SET_COMMENTS';
+export const ADD_COMMENT = 'COMMENT:ADD_COMMENT';

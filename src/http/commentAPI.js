@@ -6,3 +6,8 @@ export const getAllComments = async (postId) => {
     return data;
 };
 
+export const createComment = async (commentData) => {
+    const {data} = await $authHost.post('api/comment', commentData);
+    return data;
+};
+

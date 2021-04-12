@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {List} from "semantic-ui-react";
+import React, {useEffect, useState} from 'react';
+import {Button, Icon, List} from "semantic-ui-react";
 import ListItem from "./ListItem";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
@@ -7,12 +7,15 @@ import {bindActionCreators} from "redux";
 import {getAllPostComments} from "../../actions/comment";
 import Preloader from "../Preloader";
 import './styles.scss';
+import AddCommentForm from "./AddCommentForm";
 
 const CommentsList = ({
     postId,
     comments,
     getAllPostComments
 }) => {
+    const [openForm, setOpenForm] = useState(false);
+
     useEffect(() => {
         getAllPostComments(postId)
     }, []);
@@ -23,6 +26,10 @@ const CommentsList = ({
 
     return (
         <List className="CommentsList" divided relaxed>
+            <div className="actions">
+                <Button inverted color='blue' onClick={() => setOpenForm(!openForm)}>Add <Icon name="commenting" /></Button>
+            </div>
+            { openForm && <AddCommentForm postId={postId} closeForm={() => setOpenForm(false)} /> }
             { comments.length
                 ? comments.map(comment => <ListItem key={comment._id} comment={comment} />)
                 : <div className="empty">No comments yet!</div>
