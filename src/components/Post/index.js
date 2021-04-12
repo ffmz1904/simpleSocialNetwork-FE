@@ -1,11 +1,15 @@
-import React from 'react';
-import {Button, Modal} from "semantic-ui-react";
+import React, {useState} from 'react';
+import {Icon, Modal} from "semantic-ui-react";
 import PropTypes from "prop-types";
 import './styles.scss';
+import CommentsList from "../CommentsList";
 
 const Post = ({ post, open, close }) => {
+    const [openComments, setOpenComments] = useState(false);
+
     return (
         <Modal
+            className="Post"
             onClose={close}
             open={open}
         >
@@ -16,14 +20,13 @@ const Post = ({ post, open, close }) => {
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions>
-                {/*<Button*/}
-                {/*    content="Yep, that's me"*/}
-                {/*    // labelPosition='right'*/}
-                {/*    // icon='checkmark'*/}
-                {/*    // onClick={() => setOpen(false)}*/}
-                {/*    // positive*/}
-                {/*/>*/}
+                <div className="stats">
+                    <span onClick={() => setOpenComments(!openComments)}>
+                        <Icon name="comments"/>Comments
+                    </span>
+                </div>
             </Modal.Actions>
+            { openComments && <CommentsList postId={post._id} />}
         </Modal>
     );
 };

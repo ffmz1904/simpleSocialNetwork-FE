@@ -14,8 +14,8 @@ const PostsListItem = ({ post, openPost }) => {
             </Card.Content>
             <Card.Content extra>
                 <a>
-                    <Icon name='user' />
-                    10 Friends
+                    <Icon name='comments' />
+                     Comments
                 </a>
             </Card.Content>
         </Card>

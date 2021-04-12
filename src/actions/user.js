@@ -17,7 +17,6 @@ const checkUser = data => ({
 
 export const registration = userData => async dispatch => {
     const response = await userApi.registration(userData);
-    console.log(response);
 }
 
 export const login = userData => async dispatch => {

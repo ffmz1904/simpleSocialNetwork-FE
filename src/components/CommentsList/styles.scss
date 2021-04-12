@@ -1,0 +1,23 @@
+@import "src/colors";
+
+.ui.list.CommentsList {
+  padding: 0 10px;
+  margin: 15px 0;
+
+  .item {
+    display: flex;
+    align-items: start;
+    .content {
+      flex: 1 1 auto;
+
+      .description {
+        .date {
+          text-align: right;
+          padding: 5px;
+          font-style: italic;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
