@@ -2,6 +2,7 @@ import * as ROUTE from './utils/routesConstants';
 import Auth from "./pages/Auth";
 import Home from './pages/Home';
 import User from './pages/User';
+import People from './pages/People';
 
 export const publicRoutes = [
     {
@@ -19,9 +20,11 @@ export const publicRoutes = [
     {
         path: ROUTE.USER_ROUTE + '/:id',
         Component: User
+    },
+    {
+        path: ROUTE.PEOPLE_ROUTE,
+        Component: People
     }
 ];
 
-export const authRoutes = [
-
-];
+export const authRoutes = [];

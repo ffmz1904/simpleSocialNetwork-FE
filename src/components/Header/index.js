@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, useHistory} from "react-router-dom";
-import {HOME_ROUTE, LOGIN_ROUTE, USER_ROUTE} from "../../utils/routesConstants";
+import {HOME_ROUTE, LOGIN_ROUTE, PEOPLE_ROUTE, USER_ROUTE} from "../../utils/routesConstants";
 import {Image} from "semantic-ui-react";
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
@@ -22,6 +22,7 @@ const Header = ({ isAuth, userId, logout }) => {
                 <h1><Link to={HOME_ROUTE} >SSN</Link></h1>
             </div>
             <div className="right_block">
+                <Link to={PEOPLE_ROUTE}>People</Link>
                 { isAuth
                     ? <div className="auth_user">
                         <Link className="profile" to={USER_ROUTE + `/${userId}`}>

@@ -1,5 +1,5 @@
 import * as userApi from '../http/userAPI';
-import { REGISTRATION, LOGIN, LOGOUT, CHECK_AUTH } from '../utils/actionsConstants';
+import { LOGIN, LOGOUT, CHECK_AUTH } from '../utils/actionsConstants';
 
 const setUserData = data => ({
     type: LOGIN,
@@ -39,4 +39,9 @@ export const checkAuth = () => async dispatch => {
 export const getUserDataById = id => async dispatch => {
     const response = await userApi.getUserById(id);
     return response.user;
+};
+
+export const subscribe = userId => async dispatch => {
+    const response = await userApi.subscribe({ userId });
+    console.log(response)
 };

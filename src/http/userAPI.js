@@ -19,3 +19,8 @@ export const getUserById = async (id) => {
     const {data} = await $host.get(`api/user/${id}`);
     return data;
 };
+
+export const subscribe = async (subscribeData) => {
+    const {data} = await $authHost.post('api/user/subscribe_request', subscribeData);
+    return data;
+};

@@ -54,7 +54,12 @@ const User = ({
                             }
                         </h2>
                         <div className="friends">
-                            somethink about friends (count or images...)
+                            <div>
+                                somethink about friends (count or images...)
+                            </div>
+                            { isAuth && !isProfile &&
+                                <Button color="twitter">Subscribe</Button>
+                            }
                         </div>
                     </div>
                 </div>
