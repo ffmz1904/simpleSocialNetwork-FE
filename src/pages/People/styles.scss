@@ -1,0 +1,16 @@
+.ui.container.People {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .search_block {
+    .ui.input {
+      width: 600px;
+    }
+  }
+
+  .PeopleList {
+    width: 100%;
+    margin: 15px 0;
+  }
+}
