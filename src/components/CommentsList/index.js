@@ -10,6 +10,7 @@ import './styles.scss';
 import AddCommentForm from "./AddCommentForm";
 
 const CommentsList = ({
+    isAuth,
     postId,
     comments,
     getAllPostComments
@@ -27,7 +28,11 @@ const CommentsList = ({
     return (
         <List className="CommentsList" divided relaxed>
             <div className="actions">
-                <Button inverted color='blue' onClick={() => setOpenForm(!openForm)}>Add <Icon name="commenting" /></Button>
+                { isAuth &&
+                <Button inverted color='blue' onClick={() => setOpenForm(!openForm)}>
+                    Add <Icon name="commenting" />
+                </Button>
+                }
             </div>
             { openForm && <AddCommentForm postId={postId} closeForm={() => setOpenForm(false)} /> }
             { comments.length
@@ -40,6 +45,7 @@ const CommentsList = ({
 
 CommentsList.propTypes = {
     comments: PropTypes.array,
+    isAuth: PropTypes.bool.isRequired,
     postId: PropTypes.string.isRequired,
     getAllPostComments: PropTypes.func.isRequired
 };
@@ -50,7 +56,8 @@ const actions = {
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-const mapStateToProps = ({ post }, { postId }) => ({
+const mapStateToProps = ({ user, post }, { postId }) => ({
+    isAuth: user.isAuth,
     comments: post.filter(item => item._id === postId)[0].commentsData
 });
 
