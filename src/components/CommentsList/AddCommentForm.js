@@ -20,7 +20,7 @@ const AddCommentForm = ({
     return (
         <form className="AddCommentForm">
             <TextArea
-                placeholder="Write your thinks..."
+                placeholder="Describe your thoughts ..."
                 value={text}
                 onChange={e => setText(e.target.value)}
             />

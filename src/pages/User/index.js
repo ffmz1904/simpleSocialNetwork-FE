@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Image} from "semantic-ui-react";
+import {Button, Container, Icon, Image} from "semantic-ui-react";
 import defaultImage from "../../assets/defaultUserImg.png";
 import PostsList from "../../components/PostsList";
 import {connect} from "react-redux";
@@ -10,14 +10,19 @@ import {getUserDataById} from "../../actions/user";
 import {getAllPost} from "../../actions/post";
 import Preloader from "../../components/Preloader";
 import './styles.scss';
+import CreatePostForm from "../../components/CreatePostForm";
 
 const User = ({
+    isAuth,
+    user,
     getUserDataById,
     getAllPost,
     posts
 }) => {
     const [userData, setUserData] = useState(null);
+    const [createPostOpen, setCreatePostOpen] = useState(false);
     const { id } = useParams();
+    const isProfile = id === user._id;
 
     useEffect(() => {
         getUserDataById(id)
@@ -34,11 +39,20 @@ const User = ({
 
     return (
         <div className="page">
+            { createPostOpen && <CreatePostForm open={true} close={() => setCreatePostOpen(false)} /> }
             <Container className="UserPage">
                 <div className="information">
                     <Image src={defaultImage} size="medium"/>
                     <div className="user_information">
-                        <h2>{userData.name}</h2>
+                        <h2>
+                            {userData.name}
+                            {isProfile &&
+                                <Button color='twitter' onClick={() => setCreatePostOpen(!createPostOpen)}>
+                                    <Icon name="write" />
+                                    <span>Create post</span>
+                                </Button>
+                            }
+                        </h2>
                         <div className="friends">
                             somethink about friends (count or images...)
                         </div>
@@ -51,6 +65,8 @@ const User = ({
 };
 
 User.propTypes = {
+    user: PropTypes.object,
+    isAuth: PropTypes.bool.isRequired,
     getUserDataById: PropTypes.func.isRequired,
     getAllPost: PropTypes.func.isRequired,
     posts: PropTypes.array.isRequired
@@ -63,7 +79,9 @@ const actions = {
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-const mapStateToProps = ({ post }) => ({
+const mapStateToProps = ({ user, post }) => ({
+    isAuth: user.isAuth,
+    user: user.data,
     posts: post
 });
 
