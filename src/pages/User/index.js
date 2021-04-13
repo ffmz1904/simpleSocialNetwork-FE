@@ -20,19 +20,21 @@ const User = ({
     getAllPost,
     posts
 }) => {
+    const { id } = useParams();
     const [userData, setUserData] = useState(null);
     const [createPostOpen, setCreatePostOpen] = useState(false);
-    const { id } = useParams();
     const isProfile = id === user._id;
     let friendStatus = null;
 
     if (user && userData && isAuth) {
-        friendStatus = user.friends.length
-            ? user.friends.filter(friend => friend._id === id).shift()
-            : { status: null, _id: userData._id };
-    }
+        if (user.friends.length) {
+            friendStatus = user.friends.filter(friend => friend._id === id).shift();
+        }
 
-    console.log(friendStatus)
+        if (!friendStatus) {
+            friendStatus = { status: null, _id: userData._id };
+        }
+    }
 
     useEffect(() => {
         getUserDataById(id)
@@ -44,7 +46,7 @@ const User = ({
     }, []);
 
     if (!userData) {
-        return <Preloader />
+        return <Preloader />;
     }
 
     return (
@@ -64,9 +66,7 @@ const User = ({
                             }
                         </h2>
                         <div className="friends">
-                            <div>
-                                somethink about friends (count or images...)
-                            </div>
+                            <div>Friends: { userData.friends.length }</div>
                             { isAuth && !isProfile &&
                                 <FriendsHandlerBtn statusData={friendStatus} />
                             }
