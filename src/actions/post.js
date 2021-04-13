@@ -1,5 +1,5 @@
 import * as postApi from '../http/postAPI';
-import {ADD_POST, REMOVE_POST, SET_POSTS} from '../utils/actionsConstants';
+import {ADD_POST, REMOVE_POST, SET_POSTS, UPDATE_POST} from '../utils/actionsConstants';
 
 const setPosts = data => ({
     type: SET_POSTS,
@@ -8,6 +8,11 @@ const setPosts = data => ({
 
 const addPost = data => ({
     type: ADD_POST,
+    data
+});
+
+const updatePostData = data => ({
+    type: UPDATE_POST,
     data
 });
 
@@ -25,6 +30,11 @@ export const getAllPost = (id = null) => async dispatch => {
 export const createPost = postData => async dispatch => {
     const {post} = await postApi.createPost(postData);
     dispatch(addPost(post));
+};
+
+export const updatePost = (postId, update) => async dispatch => {
+    const {post} = await postApi.updatePost(postId, { update });
+    dispatch(updatePostData(post));
 };
 
 export const removePost = postId => async dispatch => {

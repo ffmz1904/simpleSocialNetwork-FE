@@ -10,6 +10,7 @@ const PostsListItem = ({
     openPost,
     authUserId,
     isAuth,
+    updatePost,
     removePost
 }) => {
     const isAuthor = isAuth && authUserId === post.userId;
@@ -24,6 +25,7 @@ const PostsListItem = ({
             </Card.Content>
             { isAuthor &&
                 <Card.Content className="actions">
+                    <Button color="teal" onClick={() => updatePost(post)}>Update</Button>
                     <Button color="red" onClick={() => removePost(post._id)} >Delete</Button>
                 </Card.Content>
             }
@@ -36,6 +38,7 @@ PostsListItem.propTypes = {
     openPost: PropTypes.func.isRequired,
     authUserId: PropTypes.string.isRequired,
     isAuth: PropTypes.bool.isRequired,
+    updatePost: PropTypes.func.isRequired,
     removePost: PropTypes.func.isRequired
 };
 

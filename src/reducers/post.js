@@ -1,4 +1,12 @@
-import {SET_POSTS, SET_COMMENTS, ADD_COMMENT, ADD_POST, REMOVE_POST, REMOVE_COMMENT} from '../utils/actionsConstants';
+import {
+    SET_POSTS,
+    SET_COMMENTS,
+    ADD_COMMENT,
+    ADD_POST,
+    REMOVE_POST,
+    REMOVE_COMMENT,
+    UPDATE_POST
+} from '../utils/actionsConstants';
 
 const defaultState = [];
 
@@ -16,6 +24,11 @@ export default (state = defaultState, action) => {
         case ADD_COMMENT:
             return [...state.map(post => post._id === action.postId
                 ? { ...post, commentsData: [ ...post.commentsData, action.data ] }
+                : post
+            )];
+        case UPDATE_POST:
+            return [...state.map(post => post._id === action.data._id
+                ? {...action.data}
                 : post
             )];
         case REMOVE_POST:

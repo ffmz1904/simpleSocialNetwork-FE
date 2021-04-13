@@ -11,6 +11,11 @@ export const createPost = async postData => {
     return data;
 };
 
+export const updatePost = async (postId, update) => {
+    const {data} = await $authHost.put(`api/post/${postId}`, update);
+    return data;
+};
+
 export const removePost = async postId => {
     const {data} = await $authHost.delete(`api/post/${postId}`);
     return data;
