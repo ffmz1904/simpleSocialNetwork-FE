@@ -20,6 +20,12 @@ export const getUserById = async (id) => {
     return data;
 };
 
+export const getAllUsers = async (nameFilter) => {
+    const url = nameFilter ? `api/user?name=${nameFilter}` : 'api/user';
+    const {data} = await $host.get(url);
+    return data;
+};
+
 export const subscribe = async (subscribeData) => {
     const {data} = await $authHost.post('api/user/subscribe_request', subscribeData);
     return data;

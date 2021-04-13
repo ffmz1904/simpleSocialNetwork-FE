@@ -1,5 +1,5 @@
 import * as userApi from '../http/userAPI';
-import { LOGIN, LOGOUT, CHECK_AUTH } from '../utils/actionsConstants';
+import {LOGIN, LOGOUT, CHECK_AUTH, SET_PEOPLE} from '../utils/actionsConstants';
 
 const setUserData = data => ({
     type: LOGIN,
@@ -12,6 +12,11 @@ const removeUserData = () => ({
 
 const checkUser = data => ({
     type: CHECK_AUTH,
+    data
+});
+
+const setPeople = data => ({
+    type: SET_PEOPLE,
     data
 });
 
@@ -39,6 +44,11 @@ export const checkAuth = () => async dispatch => {
 export const getUserDataById = id => async dispatch => {
     const response = await userApi.getUserById(id);
     return response.user;
+};
+
+export const getAllUsers = (nameFilter = null) => async dispatch => {
+    const {users} = await userApi.getAllUsers(nameFilter);
+    dispatch(setPeople(users));
 };
 
 export const subscribe = userId => async dispatch => {

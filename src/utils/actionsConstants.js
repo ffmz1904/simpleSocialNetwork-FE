@@ -4,6 +4,9 @@ export const LOGIN = 'USER:LOGIN';
 export const LOGOUT = 'USER:LOGOUT';
 export const CHECK_AUTH = 'USER:CHECK_AUTH';
 
+//  People
+export const SET_PEOPLE = 'PEOPLE:SET_PEOPLE';
+
 //  Post
 export const SET_POSTS = 'POST:SET_POSTS';
 export const ADD_POST = 'POST:ADD_POST';

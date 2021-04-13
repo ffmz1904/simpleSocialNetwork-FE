@@ -1,10 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Input} from "semantic-ui-react";
 import PeopleList from "../../components/PeopleList";
+import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {getAllUsers} from "../../actions/user";
 import './styles.scss';
 
-const People = () => {
-    const [searchStr, setSearchStr] = useState('');
+const People = ({
+    getAllUsers,
+    people
+}) => {
+    const [searchStr, setSearchStr] = useState(null);
+
+    useEffect(() => {
+        getAllUsers(searchStr);
+    }, [searchStr]);
 
     return (
         <div className="page">
@@ -17,10 +28,23 @@ const People = () => {
                         onChange={e => setSearchStr(e.target.value)}
                     />
                 </div>
-                <PeopleList />
+                <PeopleList people={people} />
             </Container>
         </div>
     );
 };
 
-export default People;
+People.propTypes = {
+    people: PropTypes.array.isRequired,
+    getAllUsers: PropTypes.func.isRequired
+};
+
+const actions = { getAllUsers };
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+const mapStateToProps = ({ people }) => ({
+   people: people
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(People);
