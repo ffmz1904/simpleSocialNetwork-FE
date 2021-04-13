@@ -9,9 +9,9 @@ import {useParams} from "react-router-dom";
 import {getUserDataById} from "../../actions/user";
 import {getAllPost} from "../../actions/post";
 import Preloader from "../../components/Preloader";
-import './styles.scss';
 import CreatePostForm from "../../components/CreatePostForm";
 import FriendsHandlerBtn from "../../components/FriendsHandlerBtn";
+import './styles.scss';
 
 const User = ({
     isAuth,
