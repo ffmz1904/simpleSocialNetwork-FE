@@ -28,7 +28,7 @@ const Header = ({ isAuth, userId, logout }) => {
                         <Link className="profile" to={USER_ROUTE + `/${userId}`}>
                             <Image src={defaultImage} size="small" />
                         </Link>
-                        <Link className="logout" onClick={logoutUser} >Log out</Link>
+                        <Link to={HOME_ROUTE} className="logout" onClick={logoutUser} >Log out</Link>
                       </div>
                     : <Link to={LOGIN_ROUTE}>Sign In</Link>
                 }
@@ -38,8 +38,8 @@ const Header = ({ isAuth, userId, logout }) => {
 };
 
 Header.propTypes = {
+    userId: PropTypes.string,
     isAuth: PropTypes.bool.isRequired,
-    userId: PropTypes.string.isRequired,
     logout: PropTypes.func.isRequired
 };
 

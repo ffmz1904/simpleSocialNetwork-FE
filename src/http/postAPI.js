@@ -10,3 +10,8 @@ export const createPost = async postData => {
     const {data} = await $authHost.post('api/post', postData);
     return data;
 };
+
+export const removePost = async postId => {
+    const {data} = await $authHost.delete(`api/post/${postId}`);
+    return data;
+};

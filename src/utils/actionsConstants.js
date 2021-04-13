@@ -11,6 +11,7 @@ export const SET_PEOPLE = 'PEOPLE:SET_PEOPLE';
 //  Post
 export const SET_POSTS = 'POST:SET_POSTS';
 export const ADD_POST = 'POST:ADD_POST';
+export const REMOVE_POST = 'POST:REMOVE_POST';
 
 //  Comment
 export const SET_COMMENTS = 'COMMENT:SET_COMMENTS';

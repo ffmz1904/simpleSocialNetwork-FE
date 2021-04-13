@@ -1,9 +1,19 @@
 import React from 'react';
-import {Card, Icon, Image} from "semantic-ui-react";
+import {Button, Card} from "semantic-ui-react";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import PropTypes from 'prop-types';
-import defaultImage from '../../assets/defaultUserImg.png';
+import {removePost} from "../../actions/post";
 
-const PostsListItem = ({ post, openPost }) => {
+const PostsListItem = ({
+    post,
+    openPost,
+    authUserId,
+    isAuth,
+    removePost
+}) => {
+    const isAuthor = isAuth && authUserId === post.userId;
+
     return (
         <Card className="PostsListItem">
             <Card.Content onClick={() => openPost(post)}>
@@ -12,18 +22,30 @@ const PostsListItem = ({ post, openPost }) => {
                     { post.body }
                 </Card.Description>
             </Card.Content>
-            <Card.Content extra>
-                <a>
-                    <Icon name='comments' />
-                     Comments
-                </a>
-            </Card.Content>
+            { isAuthor &&
+                <Card.Content className="actions">
+                    <Button color="red" onClick={() => removePost(post._id)} >Delete</Button>
+                </Card.Content>
+            }
         </Card>
     );
 };
 
 PostsListItem.propTypes = {
-    post: PropTypes.object.isRequired
-}
+    post: PropTypes.object.isRequired,
+    openPost: PropTypes.func.isRequired,
+    authUserId: PropTypes.string.isRequired,
+    isAuth: PropTypes.bool.isRequired,
+    removePost: PropTypes.func.isRequired
+};
 
-export default PostsListItem;
+const actions = { removePost };
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+const mapStateToProps = ({ user }) => ({
+    isAuth: user.isAuth,
+    authUserId: user.data._id
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsListItem);

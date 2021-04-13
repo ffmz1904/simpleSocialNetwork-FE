@@ -1,4 +1,4 @@
-import {SET_POSTS, SET_COMMENTS, ADD_COMMENT, ADD_POST} from '../utils/actionsConstants';
+import {SET_POSTS, SET_COMMENTS, ADD_COMMENT, ADD_POST, REMOVE_POST} from '../utils/actionsConstants';
 
 const defaultState = [];
 
@@ -18,6 +18,8 @@ export default (state = defaultState, action) => {
                 ? { ...post, commentsData: [ ...post.commentsData, action.data ] }
                 : post
             )];
+        case REMOVE_POST:
+            return [...state.filter(post => post._id !== action.id)];
         default:
             return state;
     }

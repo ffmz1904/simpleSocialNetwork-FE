@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Icon, Modal} from "semantic-ui-react";
 import PropTypes from "prop-types";
-import './styles.scss';
 import CommentsList from "../CommentsList";
+import './styles.scss';
 
 const Post = ({ post, open, close }) => {
     const [openComments, setOpenComments] = useState(false);
@@ -22,7 +22,7 @@ const Post = ({ post, open, close }) => {
             <Modal.Actions>
                 <div className="stats">
                     <span onClick={() => setOpenComments(!openComments)}>
-                        <Icon name="comments"/>Comments
+                        <Icon name="comments"/>{ openComments ? "Hide" : "View" } comments
                     </span>
                 </div>
             </Modal.Actions>

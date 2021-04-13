@@ -8,5 +8,10 @@
 
   .ui.card.PostsListItem {
     width: 100%;
+
+    .content.actions {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 }

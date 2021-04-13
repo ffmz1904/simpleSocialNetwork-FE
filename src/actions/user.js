@@ -26,7 +26,7 @@ const updateFriendsList = friends => ({
 });
 
 export const registration = userData => async dispatch => {
-    const response = await userApi.registration(userData);
+    await userApi.registration(userData);
 }
 
 export const login = userData => async dispatch => {
