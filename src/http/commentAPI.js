@@ -11,3 +11,8 @@ export const createComment = async (commentData) => {
     return data;
 };
 
+export const removeComment = async (commentId) => {
+    const {data} = await $authHost.delete(`api/comment/${commentId}`);
+    return data;
+};
+

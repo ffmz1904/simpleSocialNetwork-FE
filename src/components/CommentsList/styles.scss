@@ -24,12 +24,27 @@
     .content {
       flex: 1 1 auto;
 
+      .header {
+        display: flex;
+        justify-content: space-between;
+
+        span > i {
+          color: red;
+        }
+      }
+
       .description {
         .date {
           text-align: right;
           padding: 5px;
           font-style: italic;
           font-size: 12px;
+        }
+
+        .comment {
+          width: 890px;
+          word-wrap: break-word;
+          padding-right: 20px;
         }
       }
     }
