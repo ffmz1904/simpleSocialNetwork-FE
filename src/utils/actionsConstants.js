@@ -3,6 +3,7 @@ export const REGISTRATION = 'USER:REGISTRATION';
 export const LOGIN = 'USER:LOGIN';
 export const LOGOUT = 'USER:LOGOUT';
 export const CHECK_AUTH = 'USER:CHECK_AUTH';
+export const SET_FRIENDS = 'USER:SET_FRIENDS';
 
 //  People
 export const SET_PEOPLE = 'PEOPLE:SET_PEOPLE';

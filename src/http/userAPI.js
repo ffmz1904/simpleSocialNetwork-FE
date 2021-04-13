@@ -30,3 +30,13 @@ export const subscribe = async (subscribeData) => {
     const {data} = await $authHost.post('api/user/subscribe_request', subscribeData);
     return data;
 };
+
+export const confirmSubscribing = async (confirmationData) => {
+    const {data} = await $authHost.post('api/user/confirm_subscribe_request', confirmationData);
+    return data;
+};
+
+export const unsubscribe = async (unsubscribeData) => {
+    const {data} = await $authHost.post('api/user/unsubscribe', unsubscribeData);
+    return data;
+};

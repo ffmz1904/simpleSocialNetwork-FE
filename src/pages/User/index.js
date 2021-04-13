@@ -11,6 +11,7 @@ import {getAllPost} from "../../actions/post";
 import Preloader from "../../components/Preloader";
 import './styles.scss';
 import CreatePostForm from "../../components/CreatePostForm";
+import FriendsHandlerBtn from "../../components/FriendsHandlerBtn";
 
 const User = ({
     isAuth,
@@ -23,6 +24,15 @@ const User = ({
     const [createPostOpen, setCreatePostOpen] = useState(false);
     const { id } = useParams();
     const isProfile = id === user._id;
+    let friendStatus = null;
+
+    if (user && userData && isAuth) {
+        friendStatus = user.friends.length
+            ? user.friends.filter(friend => friend._id === id).shift()
+            : { status: null, _id: userData._id };
+    }
+
+    console.log(friendStatus)
 
     useEffect(() => {
         getUserDataById(id)
@@ -58,7 +68,7 @@ const User = ({
                                 somethink about friends (count or images...)
                             </div>
                             { isAuth && !isProfile &&
-                                <Button color="twitter">Subscribe</Button>
+                                <FriendsHandlerBtn statusData={friendStatus} />
                             }
                         </div>
                     </div>
