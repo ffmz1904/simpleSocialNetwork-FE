@@ -1,0 +1,14 @@
+@import "src/colors";
+
+.ui.modal.Post {
+  .actions {
+    text-align: left;
+
+    span {
+      cursor: pointer;
+      &:hover {
+        color: $color_blue;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.PostsList {
+  .empty {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 25px 0;
+  }
+
+  .ui.card.PostsListItem {
+    width: 100%;
+
+    .content.actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+@import "src/colors";
+
+.ui.list.CommentsList {
+  padding: 0 10px;
+  margin: 15px 0;
+
+  .actions {
+    margin-bottom: 10px;
+
+    .ui.button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      i {
+        margin: 0 0 0 8px;
+      }
+    }
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+
+    .image {
+      border: 1px solid $color_black;
+      border-radius: 100%;
+    }
+
+    .content {
+      flex: 1 1 auto;
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+
+        span > i {
+          color: red;
+        }
+      }
+
+      .description {
+        .date {
+          text-align: right;
+          padding: 5px;
+          font-style: italic;
+          font-size: 12px;
+        }
+
+        .comment {
+          width: 890px;
+          word-wrap: break-word;
+          padding-right: 20px;
+        }
+      }
+    }
+  }
+
+  .empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+  }
+
+  .AddCommentForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+
+    textarea {
+      min-width: 100%;
+      width: 100%;
+      max-width: 100%;
+      min-height: 60px;
+      height: 60px;
+      max-height: 100px;
+      padding: 2px 5px;
+    }
+
+    .ui.button {
+      width: 100px;
+      margin: 10px 0;
+    }
+  }
+}

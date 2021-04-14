@@ -1,0 +1,52 @@
+@import "src/colors";
+
+.ui.container.UserPage {
+  display: flex;
+  flex-direction: column;
+
+  .information {
+    display: flex;
+    margin-bottom: 20px;
+
+    img {
+      border: 2px solid $color_black;
+      border-radius: 100%;
+    }
+
+    .user_information {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 25px 50px;
+
+      h2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .profile_actions {
+          display: flex;
+          align-items: center;
+
+          .settings {
+            margin-left: 10px;
+          }
+        }
+      }
+
+      .friends {
+        font-weight: bold;
+        font-size: 18px;
+        a {
+          display: block;
+          margin-bottom: 25px;
+        }
+      }
+    }
+  }
+
+  .PostsList {
+    padding-bottom: 30px;
+  }
+}

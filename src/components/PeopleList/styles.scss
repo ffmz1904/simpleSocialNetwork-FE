@@ -1,0 +1,32 @@
+@import "src/colors";
+
+.PeopleList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .ui.card {
+    cursor: pointer;
+
+    &:hover {
+      width: 310px;
+      height: 360px;
+      box-shadow: 0 0 1px 2px $color_blue;
+    }
+
+    &:first-child {
+      margin-top: 14px;
+    }
+
+    &:last-child {
+      margin-bottom: 14px;
+    }
+
+    .content {
+      h2 {
+        text-align: center;
+        color: $color_black;
+      }
+    }
+  }
+}
