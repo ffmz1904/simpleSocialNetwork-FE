@@ -1,0 +1,22 @@
+.UpdateUserForm {
+  form > .data,
+  form > .password_data {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      margin: 10px 0;
+    }
+  }
+
+  form {
+    .ui.input {
+      width: 400px;
+      margin: 5px 0;
+    }
+
+    .ui.button {
+      margin: 10px 0;
+    }
+  }
+}
