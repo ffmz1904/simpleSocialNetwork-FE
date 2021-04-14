@@ -6,11 +6,13 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {registration, login} from "../../actions/user";
+import {setError} from "../../actions/error";
 import './styles.scss';
 
 const Auth = ({
     registration,
-    login
+    login,
+    setError
 }) => {
     const history = useHistory();
     const location = useLocation();
@@ -28,9 +30,9 @@ const Auth = ({
         } else {
             if (password === confirmPassword) {
                 registration({ email, password, name })
-                    .then(res => history.push(LOGIN_ROUTE));
+                    .then(res => res && history.push(LOGIN_ROUTE));
             } else {
-                // todo handle error
+                setError('Password mismatch!');
             }
         }
     }
@@ -86,12 +88,14 @@ const Auth = ({
 
 Auth.propTypes = {
     registration: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired,
+    setError: PropTypes.func.isRequired
 };
 
 const actions = {
     registration,
-    login
+    login,
+    setError
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

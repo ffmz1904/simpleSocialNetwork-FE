@@ -32,19 +32,25 @@ const updateUser = data => ({
 });
 
 export const registration = userData => async dispatch => {
-    await userApi.registration(userData);
+    const response = await userApi.registration(userData);
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
+    return true;
 }
 
 export const login = userData => async dispatch => {
     const response = await userApi.login(userData);
 
-    if (response.success) {
-        localStorage.setItem('token', response.token);
-        dispatch(setUserData(response.user));
-        return true;
-    } else {
-        dispatch(setError(response.message));
+    if (!response.success) {
+        return dispatch(setError(response.message));
     }
+
+    localStorage.setItem('token', response.token);
+    dispatch(setUserData(response.user));
+    return true;
 }
 
 export const logout = () => async dispatch => {
@@ -54,41 +60,81 @@ export const logout = () => async dispatch => {
 
 export const checkAuth = () => async dispatch => {
     const response = await userApi.check();
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
     localStorage.setItem('token', response.token);
     dispatch(checkUser(response.user));
 };
 
 export const getUserDataById = id => async dispatch => {
     const response = await userApi.getUserById(id);
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
     return response.user;
 };
 
 export const getAllUsers = (nameFilter = null) => async dispatch => {
-    const {users} = await userApi.getAllUsers(nameFilter);
-    dispatch(setPeople(users));
+    const response = await userApi.getAllUsers(nameFilter);
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
+    dispatch(setPeople(response.users));
 };
 
 export const subscribe = userId => async dispatch => {
-    const { userFriends } = await userApi.subscribe({ subscribeTo: userId });
-    dispatch(updateFriendsList(userFriends));
+    const response = await userApi.subscribe({ subscribeTo: userId });
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
+    dispatch(updateFriendsList(response.userFriends));
 };
 
 export const confirmSubscribing = friendId => async dispatch => {
-    const { userFriends } = await userApi.confirmSubscribing({ friendId });
-    dispatch(updateFriendsList(userFriends));
+    const response = await userApi.confirmSubscribing({ friendId });
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
+    dispatch(updateFriendsList(response.userFriends));
 };
 
 export const unsubscribe = unsubscribedId => async dispatch => {
-    const { userFriends } = await userApi.unsubscribe({ unsubscribedId });
-    dispatch(updateFriendsList(userFriends));
+    const response = await userApi.unsubscribe({ unsubscribedId });
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
+    dispatch(updateFriendsList(response.userFriends));
 };
 
 export const getFriends = id => async dispatch => {
-    const { friendsData } = await userApi.getUserFriendsData(id);
-    return friendsData;
+    const response = await userApi.getUserFriendsData(id);
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
+    return response.friendsData;
 };
 
 export const updateProfile = update => async dispatch => {
-    const { user } = await userApi.updateUserData(update );
-    dispatch(updateUser(user));
+    const response = await userApi.updateUserData(update);
+
+    if (!response.success) {
+        return dispatch(setError(response.message));
+    }
+
+    dispatch(updateUser(response.user));
 };
