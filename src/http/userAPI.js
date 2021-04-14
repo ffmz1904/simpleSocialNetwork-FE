@@ -45,3 +45,8 @@ export const getUserFriendsData = async (id) => {
     const {data} = await $host.get(`api/user/friends/${id}`);
     return data;
 };
+
+export const updateUserData = async (update) => {
+    const {data} = await $authHost.put('api/user', update);
+    return data;
+};

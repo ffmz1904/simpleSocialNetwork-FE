@@ -3,12 +3,28 @@ import {Button, Input} from "semantic-ui-react";
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const UpdateUserForm = ({ user }) => {
+const UpdateUserForm = ({ user, updateProfile, closeForm }) => {
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    const updateHandler = () => {
+        const update = { name, email };
+
+        if (newPassword) {
+            if (newPassword === confirmPassword) {
+                update.password = newPassword;
+                update.oldPassword = oldPassword;
+            } else {
+                //todo error
+            }
+        }
+
+        updateProfile(update);
+        closeForm();
+    }
 
     return (
         <div className="UpdateUserForm">
@@ -47,14 +63,16 @@ const UpdateUserForm = ({ user }) => {
                         onChange={e => setConfirmPassword(e.target.value)}
                     />
                 </div>
-                <Button type="button" color="teal">Save changing</Button>
+                <Button type="button" color="teal" onClick={updateHandler}>Save changing</Button>
             </form>
         </div>
     );
 };
 
 UpdateUserForm.propTypes = {
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    updateProfile: PropTypes.func.isRequired,
+    closeForm: PropTypes.func.isRequired
 };
 
 export default UpdateUserForm;

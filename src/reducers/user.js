@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, CHECK_AUTH, SET_FRIENDS} from '../utils/actionsConstants';
+import {LOGIN, LOGOUT, CHECK_AUTH, SET_FRIENDS, UPDATE_PROFILE} from '../utils/actionsConstants';
 
 const defaultState = {
     isAuth: false,
@@ -14,6 +14,8 @@ export default (state = defaultState, action) => {
             return { ...defaultState };
         case SET_FRIENDS:
             return { ...state, data: { ...state.data, friends: action.friends } };
+        case UPDATE_PROFILE:
+            return { ...state, data: { ...action.data } };
         default:
             return state;
     }

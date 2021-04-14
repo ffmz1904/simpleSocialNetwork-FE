@@ -1,5 +1,5 @@
 import * as userApi from '../http/userAPI';
-import {LOGIN, LOGOUT, CHECK_AUTH, SET_PEOPLE, SET_FRIENDS} from '../utils/actionsConstants';
+import {LOGIN, LOGOUT, CHECK_AUTH, SET_PEOPLE, SET_FRIENDS, UPDATE_PROFILE} from '../utils/actionsConstants';
 
 const setUserData = data => ({
     type: LOGIN,
@@ -23,6 +23,11 @@ const setPeople = data => ({
 const updateFriendsList = friends => ({
     type: SET_FRIENDS,
     friends
+});
+
+const updateUser = data => ({
+    type: UPDATE_PROFILE,
+    data
 });
 
 export const registration = userData => async dispatch => {
@@ -74,4 +79,9 @@ export const unsubscribe = unsubscribedId => async dispatch => {
 export const getFriends = id => async dispatch => {
     const { friendsData } = await userApi.getUserFriendsData(id);
     return friendsData;
+};
+
+export const updateProfile = update => async dispatch => {
+    const { user } = await userApi.updateUserData({ update });
+    dispatch(updateUser(user));
 };

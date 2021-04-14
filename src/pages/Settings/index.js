@@ -4,10 +4,12 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import PropTypes from 'prop-types';
 import UpdateUserForm from "../../components/UpdateUserForm";
+import {updateProfile} from "../../actions/user";
 import './styles.scss';
 
 const Settings = ({
-    user
+    user,
+    updateProfile
 }) => {
     const [openChangeData, setOpenChangData] = useState(false);
 
@@ -26,7 +28,7 @@ const Settings = ({
                             <div><span>Email: </span>{user.email}</div>
                         </div>
                         :
-                        <UpdateUserForm user={user} />
+                        <UpdateUserForm user={user} updateProfile={updateProfile} closeForm={() => setOpenChangData(false)}/>
                     }
                 </div>
             </Container>
@@ -35,10 +37,11 @@ const Settings = ({
 };
 
 Settings.propTypes = {
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    updateProfile: PropTypes.func.isRequired
 };
 
-const actions = {};
+const actions = { updateProfile };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 

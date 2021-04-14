@@ -4,6 +4,7 @@ export const LOGIN = 'USER:LOGIN';
 export const LOGOUT = 'USER:LOGOUT';
 export const CHECK_AUTH = 'USER:CHECK_AUTH';
 export const SET_FRIENDS = 'USER:SET_FRIENDS';
+export const UPDATE_PROFILE = 'USER:UPDATE_PROFILE';
 
 //  People
 export const SET_PEOPLE = 'PEOPLE:SET_PEOPLE';
