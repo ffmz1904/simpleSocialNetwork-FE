@@ -70,3 +70,8 @@ export const unsubscribe = unsubscribedId => async dispatch => {
     const { userFriends } = await userApi.unsubscribe({ unsubscribedId });
     dispatch(updateFriendsList(userFriends));
 };
+
+export const getFriends = id => async dispatch => {
+    const { friendsData } = await userApi.getUserFriendsData(id);
+    return friendsData;
+};

@@ -40,3 +40,8 @@ export const unsubscribe = async (unsubscribeData) => {
     const {data} = await $authHost.post('api/user/unsubscribe', unsubscribeData);
     return data;
 };
+
+export const getUserFriendsData = async (id) => {
+    const {data} = await $host.get(`api/user/friends/${id}`);
+    return data;
+};

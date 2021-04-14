@@ -3,6 +3,7 @@ import Auth from "./pages/Auth";
 import Home from './pages/Home';
 import User from './pages/User';
 import People from './pages/People';
+import Friends from './pages/Friends';
 
 export const publicRoutes = [
     {
@@ -24,6 +25,10 @@ export const publicRoutes = [
     {
         path: ROUTE.PEOPLE_ROUTE,
         Component: People
+    },
+    {
+        path: ROUTE.FRIENDS_ROUTE + '/:id',
+        Component: Friends
     }
 ];
 

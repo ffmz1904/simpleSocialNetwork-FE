@@ -5,12 +5,13 @@ import PostsList from "../../components/PostsList";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import PropTypes from "prop-types";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {getUserDataById} from "../../actions/user";
 import {getAllPost} from "../../actions/post";
 import Preloader from "../../components/Preloader";
 import CreatePostForm from "../../components/CreatePostForm";
 import FriendsHandlerBtn from "../../components/FriendsHandlerBtn";
+import {FRIENDS_ROUTE} from "../../utils/routesConstants";
 import './styles.scss';
 
 const User = ({
@@ -66,7 +67,7 @@ const User = ({
                             }
                         </h2>
                         <div className="friends">
-                            <div>Friends: { userData.friends.length }</div>
+                            <Link to={FRIENDS_ROUTE + `/${userData._id}`} >Friends: { userData.friends.length }</Link>
                             { isAuth && !isProfile &&
                                 <FriendsHandlerBtn statusData={friendStatus} />
                             }

@@ -29,7 +29,8 @@
       .friends {
         font-weight: bold;
         font-size: 18px;
-        div {
+        a {
+          display: block;
           margin-bottom: 25px;
         }
       }
