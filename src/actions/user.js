@@ -60,6 +60,11 @@ export const logout = () => async dispatch => {
 
 export const checkAuth = () => async dispatch => {
     const response = await userApi.check();
+
+    if (!response.success) {
+        return false;
+    }
+
     localStorage.setItem('token', response.token);
     dispatch(checkUser(response.user));
 };
