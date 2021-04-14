@@ -12,3 +12,18 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .ui.modal.Post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+
+    .actions {
+      .stats {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

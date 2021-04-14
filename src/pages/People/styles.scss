@@ -14,3 +14,20 @@
     margin: 15px 0;
   }
 }
+
+@media (max-width: 768px) {
+  .ui.container.People {
+    .search_block {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      .ui.input {
+        width: 80%;
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
