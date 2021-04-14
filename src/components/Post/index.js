@@ -14,7 +14,7 @@ const Post = ({ post, open, close }) => {
             open={open}
         >
             <Modal.Header>{ post.title }</Modal.Header>
-            <Modal.Content image>
+            <Modal.Content>
                 <Modal.Description>
                     { post.body }
                 </Modal.Description>

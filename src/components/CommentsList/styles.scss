@@ -29,8 +29,10 @@
 
     .content {
       flex: 1 1 auto;
+      width: calc(100% - 50px) !important;
 
       .header {
+
         display: flex;
         justify-content: space-between;
 
@@ -48,7 +50,7 @@
         }
 
         .comment {
-          width: 890px;
+          width: 100%;
           word-wrap: break-word;
           padding-right: 20px;
         }

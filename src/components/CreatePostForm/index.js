@@ -15,7 +15,6 @@ const CreatePostForm = ({
     const [body, setBody] = useState('');
 
     const addNewPost = () => {
-        console.log('add post')
         createPost({ title, body });
         close();
     };

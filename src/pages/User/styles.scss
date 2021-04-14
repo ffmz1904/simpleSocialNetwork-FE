@@ -50,3 +50,26 @@
     padding-bottom: 30px;
   }
 }
+
+@media (max-width: 768px) {
+  .ui.container.UserPage {
+    .information {
+      flex-direction: column;
+      align-items: center;
+
+      .user_information {
+        h2 {
+          flex-direction: column;
+
+          .profile_actions {
+            margin: 15px 0;
+          }
+        }
+
+        .friends {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,13 @@
   .ui.card.PostsListItem {
     width: 100%;
 
+    .content {
+      .description {
+        max-height: 150px;
+        overflow-y: hidden;
+      }
+    }
+
     .content.actions {
       display: flex;
       justify-content: flex-end;

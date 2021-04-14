@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import user from './reducers/user';
 import post from './reducers/post';
 import people from './reducers/people';
+import error from './reducers/error';
 
 const initialState = {};
 
@@ -23,7 +24,8 @@ const composedEnhancers = compose(
 const reducers = {
     user,
     post,
-    people
+    people,
+    error
 };
 
 const rootReducer = combineReducers({ ...reducers });
