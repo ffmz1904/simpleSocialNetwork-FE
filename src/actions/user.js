@@ -21,9 +21,9 @@ const setPeople = data => ({
     data
 });
 
-const updateFriendsList = friends => ({
+const updateFriendsList = (userFriends) => ({
     type: SET_FRIENDS,
-    friends
+    userFriends
 });
 
 const updateUser = data => ({

@@ -1,4 +1,4 @@
-import { SET_PEOPLE } from '../utils/actionsConstants';
+import {SET_PEOPLE} from '../utils/actionsConstants';
 
 const defaultState = [];
 
