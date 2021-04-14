@@ -43,7 +43,7 @@ const User = ({
             });
 
         getAllPost(id)
-    }, []);
+    }, [id]);
 
     if (!userData) {
         return <Preloader />;
