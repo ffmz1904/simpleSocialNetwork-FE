@@ -1,5 +1,6 @@
 import * as userApi from '../http/userAPI';
 import {LOGIN, LOGOUT, CHECK_AUTH, SET_PEOPLE, SET_FRIENDS, UPDATE_PROFILE} from '../utils/actionsConstants';
+import {setError} from "./error";
 
 const setUserData = data => ({
     type: LOGIN,
@@ -36,8 +37,14 @@ export const registration = userData => async dispatch => {
 
 export const login = userData => async dispatch => {
     const response = await userApi.login(userData);
-    localStorage.setItem('token', response.token);
-    dispatch(setUserData(response.user));
+
+    if (response.success) {
+        localStorage.setItem('token', response.token);
+        dispatch(setUserData(response.user));
+        return true;
+    } else {
+        dispatch(setError(response.message));
+    }
 }
 
 export const logout = () => async dispatch => {

@@ -3,25 +3,28 @@ import {BrowserRouter} from "react-router-dom";
 import Header from "./components/Header";
 import AppRouter from "./components/AppRouter";
 import { checkAuth } from "./actions/user";
+import ErrorMessage from "./components/ErrorMessage";
 import { bindActionCreators } from "redux";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 
-const App = ({ checkAuth }) =>  {
+const App = ({ checkAuth, error }) =>  {
     useEffect(() => {
         checkAuth()
     }, []);
 
     return (
-    <BrowserRouter>
-      <Header />
-      <AppRouter />
-    </BrowserRouter>
+        <BrowserRouter>
+        { error.isError && <ErrorMessage error={error} /> }
+        <Header />
+        <AppRouter />
+        </BrowserRouter>
     );
 };
 
 App.propTypes = {
-    checkAuth: PropTypes.func.isRequired
+    checkAuth: PropTypes.func.isRequired,
+    error: PropTypes.object.isRequired
 };
 
 const actions = {
@@ -30,4 +33,8 @@ const actions = {
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = ({ error }) => ({
+    error: error
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

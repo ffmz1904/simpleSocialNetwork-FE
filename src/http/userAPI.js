@@ -6,8 +6,13 @@ export const registration = async (registrationData) => {
 };
 
 export const login = async (loginData) => {
-    const {data} = await $host.post('api/user/login', loginData);
-    return data;
+    try {
+        const {data} = await $host.post('api/user/login', loginData);
+        return data;
+    } catch (e) {
+        const {data} = e.response;
+        return data;
+    }
 };
 
 export const check = async () => {

@@ -24,7 +24,7 @@ const Auth = ({
     const handleClick = () => {
         if (isLogin) {
             login({ email, password })
-                .then(res => history.push(HOME_ROUTE));
+                .then(res => res && history.push(HOME_ROUTE));
         } else {
             if (password === confirmPassword) {
                 registration({ email, password, name })
@@ -99,4 +99,4 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 export default connect(
     null,
     mapDispatchToProps
-    )(Auth);
+)(Auth);
