@@ -13,7 +13,7 @@ export default (state = defaultState, action) => {
         case LOGOUT:
             return { ...defaultState };
         case SET_FRIENDS:
-            return { ...state, data: { ...state.data, friends: action.friends } };
+            return { ...state, data: { ...state.data, friends: action.userFriends } };
         case UPDATE_PROFILE:
             return { ...state, data: { ...action.data } };
         default:
