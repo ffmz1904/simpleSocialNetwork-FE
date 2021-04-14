@@ -7,13 +7,18 @@ const UpdateUserForm = ({ user, updateProfile, closeForm }) => {
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
     const [image, setImage] = useState(null);
+    const [file, setFile] = useState(null);
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const selectFile = e => {
-        setImage(e.target.files[0]);
+        const reader = new FileReader();
+        reader.onload = (event) => setImage(event.target.result);
+        reader.readAsDataURL(e.target.files[0]);
+        setFile(e.target.files[0]);
     }
+    console.log(image)
 
     const updateHandler = () => {
         const formData = new FormData();
@@ -30,7 +35,7 @@ const UpdateUserForm = ({ user, updateProfile, closeForm }) => {
         }
 
         if (image) {
-            formData.append('img', image);
+            formData.append('img', file);
         }
 
         updateProfile(formData);
@@ -42,7 +47,7 @@ const UpdateUserForm = ({ user, updateProfile, closeForm }) => {
             <form>
                 <div className="image">
                     <h2>Update image:</h2>
-                    <Image src={process.env.REACT_APP_API_URL + user.img} size="medium" />
+                    <Image src={ !image ? process.env.REACT_APP_API_URL + user.img : image} size="medium" />
                     <Input
                         type="file"
                         onChange={selectFile}

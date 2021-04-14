@@ -1,9 +1,18 @@
 @import "src/colors";
 
 .ui.modal.Post {
+  .header {
+    word-break: break-word;
+  }
+
+  .content {
+    .description {
+      word-break: break-word;
+    }
+  }
+
   .actions {
     text-align: left;
-
     span {
       cursor: pointer;
       &:hover {
