@@ -6,10 +6,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
 import PropTypes from 'prop-types';
 import { logout } from "../../actions/user";
-import defaultImage from '../../assets/defaultUserImg.png';
 import './styles.scss';
 
-const Header = ({ isAuth, userId, logout }) => {
+const Header = ({ isAuth, userId, logout, userImg }) => {
     const history = useHistory();
     const logoutUser = () => {
         logout()
@@ -26,7 +25,7 @@ const Header = ({ isAuth, userId, logout }) => {
                 { isAuth
                     ? <div className="auth_user">
                         <Link className="profile" to={USER_ROUTE + `/${userId}`}>
-                            <Image src={defaultImage} size="small" />
+                            <Image src={process.env.REACT_APP_API_URL + userImg} size="small" />
                         </Link>
                         <Link to={HOME_ROUTE} className="logout" onClick={logoutUser} >Log out</Link>
                       </div>
@@ -39,6 +38,7 @@ const Header = ({ isAuth, userId, logout }) => {
 
 Header.propTypes = {
     userId: PropTypes.string,
+    userImg: PropTypes.string,
     isAuth: PropTypes.bool.isRequired,
     logout: PropTypes.func.isRequired
 };
@@ -51,7 +51,8 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const mapStateToProps = ({ user }) => ({
     isAuth: user.isAuth,
-    userId: user.data._id
+    userId: user.data._id,
+    userImg: user.data.img
 });
 
 export default connect(

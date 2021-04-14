@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Container, Icon, Image} from "semantic-ui-react";
-import defaultImage from "../../assets/defaultUserImg.png";
 import PostsList from "../../components/PostsList";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -55,7 +54,7 @@ const User = ({
             { createPostOpen && <CreatePostForm open={true} close={() => setCreatePostOpen(false)} /> }
             <Container className="UserPage">
                 <div className="information">
-                    <Image src={defaultImage} size="medium"/>
+                    <Image src={process.env.REACT_APP_API_URL + userData.img} size="medium"/>
                     <div className="user_information">
                         <h2>
                             {userData.name}

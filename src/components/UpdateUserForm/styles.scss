@@ -1,3 +1,5 @@
+@import "src/colors";
+
 .UpdateUserForm {
   form > .data,
   form > .password_data {
@@ -17,6 +19,15 @@
 
     .ui.button {
       margin: 10px 0;
+    }
+
+    .image {
+      img {
+        border: 2px solid $color_black;
+      }
+      .ui.input {
+        margin: 15px 0;
+      }
     }
   }
 }

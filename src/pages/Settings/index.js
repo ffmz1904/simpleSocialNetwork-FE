@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Container} from "semantic-ui-react";
+import {Button, Container, Image} from "semantic-ui-react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import PropTypes from 'prop-types';
@@ -24,8 +24,11 @@ const Settings = ({
                     </h2>
                     { !openChangeData ?
                         <div className="user_data">
-                            <div><span>Name: </span>{user.name}</div>
-                            <div><span>Email: </span>{user.email}</div>
+                            <Image src={process.env.REACT_APP_API_URL + user.img} size="medium"/>
+                            <div className="data">
+                                <div><span>Name: </span>{user.name}</div>
+                                <div><span>Email: </span>{user.email}</div>
+                            </div>
                         </div>
                         :
                         <UpdateUserForm user={user} updateProfile={updateProfile} closeForm={() => setOpenChangData(false)}/>

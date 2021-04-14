@@ -82,6 +82,6 @@ export const getFriends = id => async dispatch => {
 };
 
 export const updateProfile = update => async dispatch => {
-    const { user } = await userApi.updateUserData({ update });
+    const { user } = await userApi.updateUserData(update );
     dispatch(updateUser(user));
 };

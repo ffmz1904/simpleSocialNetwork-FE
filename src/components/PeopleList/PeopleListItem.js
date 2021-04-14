@@ -1,6 +1,5 @@
 import React from 'react';
 import {Card, Image} from "semantic-ui-react";
-import defaultImage from '../../assets/defaultUserImg.png';
 import {useHistory} from "react-router-dom";
 import {USER_ROUTE} from "../../utils/routesConstants";
 
@@ -13,7 +12,7 @@ const PeopleListItem = ({ user }) => {
 
     return (
         <Card className="PeopleListItem" onClick={redirect}>
-            <Image src={defaultImage} />
+            <Image src={process.env.REACT_APP_API_URL + user.img} />
             <Card.Content>
                 <h2>{ user.name }</h2>
             </Card.Content>

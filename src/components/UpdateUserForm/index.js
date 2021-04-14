@@ -1,34 +1,53 @@
 import React, {useState} from 'react';
-import {Button, Input} from "semantic-ui-react";
+import {Button, Image, Input} from "semantic-ui-react";
 import PropTypes from 'prop-types';
 import './styles.scss';
 
 const UpdateUserForm = ({ user, updateProfile, closeForm }) => {
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
+    const [image, setImage] = useState(null);
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const selectFile = e => {
+        setImage(e.target.files[0]);
+    }
+
     const updateHandler = () => {
-        const update = { name, email };
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
 
         if (newPassword) {
             if (newPassword === confirmPassword) {
-                update.password = newPassword;
-                update.oldPassword = oldPassword;
+                formData.append('password', newPassword);
+                formData.append('oldPassword', oldPassword);
             } else {
                 //todo error
             }
         }
 
-        updateProfile(update);
+        if (image) {
+            formData.append('img', image);
+        }
+
+        updateProfile(formData);
         closeForm();
     }
 
     return (
         <div className="UpdateUserForm">
             <form>
+                <div className="image">
+                    <h2>Update image:</h2>
+                    <Image src={process.env.REACT_APP_API_URL + user.img} size="medium" />
+                    <Input
+                        type="file"
+                        onChange={selectFile}
+                    />
+                </div>
                 <div className="data">
                     <h2>Update personal data:</h2>
                     <Input

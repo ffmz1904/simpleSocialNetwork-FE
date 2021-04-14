@@ -1,9 +1,32 @@
+@import "src/colors";
+
 .ui.container.SettingsPage {
   .changeData {
     h2 {
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .user_data {
+      display: flex;
+
+      img {
+        border: 2px solid $color_black;
+      }
+
+      .data {
+        padding: 0 20px;
+        font-size: 18px;
+
+        div {
+          margin-bottom: 10px;
+        }
+
+        span {
+          font-weight: bold;
+        }
+      }
     }
   }
 }

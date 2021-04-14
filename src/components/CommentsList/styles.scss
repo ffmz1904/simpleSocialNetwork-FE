@@ -21,6 +21,12 @@
   .item {
     display: flex;
     align-items: flex-start;
+
+    .image {
+      border: 1px solid $color_black;
+      border-radius: 100%;
+    }
+
     .content {
       flex: 1 1 auto;
 

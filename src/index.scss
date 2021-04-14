@@ -19,3 +19,18 @@
     }
   }
 }
+
+.ui.image {
+  width: 310px;
+  height: 310px;
+
+  &.mini {
+    width: 35px;
+    height: 35px;
+  }
+
+  &.medium {
+    width: 300px;
+    height: 300px;
+  }
+}
