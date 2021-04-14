@@ -21,13 +21,8 @@ export const login = async (loginData) => {
 };
 
 export const check = async () => {
-    try {
-        const {data} = await $authHost.get('api/user/auth');
-        return data;
-    } catch (e) {
-        const {data} = e.response;
-        return data;
-    }
+    const {data} = await $authHost.get('api/user/auth');
+    return data;
 };
 
 export const getUserById = async (id) => {
