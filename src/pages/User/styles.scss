@@ -24,6 +24,15 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .profile_actions {
+          display: flex;
+          align-items: center;
+
+          .settings {
+            margin-left: 10px;
+          }
+        }
       }
 
       .friends {

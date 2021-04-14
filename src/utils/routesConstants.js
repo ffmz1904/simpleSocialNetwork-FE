@@ -4,4 +4,5 @@ export const HOME_ROUTE = '/';
 export const USER_ROUTE = '/user';
 export const PEOPLE_ROUTE = '/people';
 export const FRIENDS_ROUTE = '/fiends';
+export const SETTINGS_ROUTE = '/settings';
 

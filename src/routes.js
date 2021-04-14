@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import User from './pages/User';
 import People from './pages/People';
 import Friends from './pages/Friends';
+import Settings from "./pages/Settings";
 
 export const publicRoutes = [
     {
@@ -32,4 +33,9 @@ export const publicRoutes = [
     }
 ];
 
-export const authRoutes = [];
+export const authRoutes = [
+    {
+        path: ROUTE.SETTINGS_ROUTE,
+        Component: Settings
+    }
+];

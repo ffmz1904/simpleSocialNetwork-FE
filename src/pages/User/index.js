@@ -11,7 +11,7 @@ import {getAllPost} from "../../actions/post";
 import Preloader from "../../components/Preloader";
 import CreatePostForm from "../../components/CreatePostForm";
 import FriendsHandlerBtn from "../../components/FriendsHandlerBtn";
-import {FRIENDS_ROUTE} from "../../utils/routesConstants";
+import {FRIENDS_ROUTE, SETTINGS_ROUTE} from "../../utils/routesConstants";
 import './styles.scss';
 
 const User = ({
@@ -60,10 +60,13 @@ const User = ({
                         <h2>
                             {userData.name}
                             {isProfile &&
-                                <Button color='twitter' onClick={() => setCreatePostOpen(!createPostOpen)}>
-                                    <Icon name="write" />
-                                    <span>Create post</span>
-                                </Button>
+                                <div className="profile_actions">
+                                    <Button color='twitter' onClick={() => setCreatePostOpen(!createPostOpen)}>
+                                        <Icon name="write" />
+                                        <span>Create post</span>
+                                    </Button>
+                                    <Link to={SETTINGS_ROUTE} className="settings"><Icon name="settings" /></Link>
+                                </div>
                             }
                         </h2>
                         <div className="friends">
