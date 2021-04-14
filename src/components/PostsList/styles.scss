@@ -10,9 +10,16 @@
     width: 100%;
 
     .content {
+      .header {
+        word-break: break-word;
+        max-height: 50px;
+        overflow-y: hidden;
+      }
+
       .description {
         max-height: 150px;
         overflow-y: hidden;
+        word-break: break-word;
       }
     }
 
