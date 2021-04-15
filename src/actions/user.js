@@ -1,5 +1,12 @@
 import * as userApi from '../http/userAPI';
-import {LOGIN, LOGOUT, CHECK_AUTH, SET_PEOPLE, SET_FRIENDS, UPDATE_PROFILE} from '../utils/actionsConstants';
+import {
+    LOGIN,
+    LOGOUT,
+    CHECK_AUTH,
+    SET_PEOPLE,
+    SET_FRIENDS,
+    UPDATE_PROFILE
+} from '../utils/actionsConstants';
 import {setError} from "./error";
 
 const setUserData = data => ({
