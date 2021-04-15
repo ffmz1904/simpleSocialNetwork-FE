@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import PropTypes from "prop-types";
 import {Link, useParams} from "react-router-dom";
-import {getUserDataById} from "../../actions/user";
+import {getUserDataById, checkAuth} from "../../actions/user";
 import {getAllPost} from "../../actions/post";
 import Preloader from "../../components/Preloader";
 import CreatePostForm from "../../components/CreatePostForm";
@@ -17,6 +17,7 @@ const User = ({
     isAuth,
     user,
     getUserDataById,
+    checkAuth,
     getAllPost,
     posts
 }) => {
@@ -41,9 +42,9 @@ const User = ({
             .then(user => {
                 setUserData(user);
             });
-
+        checkAuth();
         getAllPost(id)
-    }, [id]);
+    }, [id, checkAuth]);
 
     if (!userData) {
         return <Preloader />;
@@ -86,13 +87,15 @@ User.propTypes = {
     user: PropTypes.object,
     isAuth: PropTypes.bool.isRequired,
     getUserDataById: PropTypes.func.isRequired,
+    checkAuth: PropTypes.func.isRequired,
     getAllPost: PropTypes.func.isRequired,
     posts: PropTypes.array.isRequired
 };
 
 const actions = {
     getUserDataById,
-    getAllPost
+    getAllPost,
+    checkAuth
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
